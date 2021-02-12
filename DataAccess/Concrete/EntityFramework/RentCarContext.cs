@@ -15,5 +15,22 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> Cars { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        //public DbSet<Marka> Markalar { get; set; }
+
+
+        //Veritabanındaki tablo adlarından farklı bir propety oluşturmak istersek eğer aşağıdaki gibi override edeiz
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // modelBuilder.HasDefaultSchema("dbo"); --tablo adı başındaki yetkilendirmeyi ayarlar dbo/admin vs
+
+            // modelBuilder.Entity<Markalar>().ToTable("Brands"); Markalar sınıfı Brands tablosuna karşılık geliyor
+
+            // modelBuilder.Entity<Markalar>().Property(p => p.Id).HasColumnName("BrandId");
+            // Markalar sınıfındaki Id özelliği ilgili sınıftaki(Brands) tablosundaki BrandId ye eşit
+
+            // modelBuilder.Entity<Markalar>().Property(p => p.MarkaAdi).HasColumnName("BrandName");
+            // Markalar sınıfındaki MarkaAdi özelliği ilgili sınıftaki(Brands) tablosundaki BrandName e eşit
+
+        }
     }
     }
