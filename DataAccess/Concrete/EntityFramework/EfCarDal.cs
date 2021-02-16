@@ -30,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = ca.DailyPrice,
                                  ModelYear = ca.ModelYear,
                                  Description = ca.Description
+                                 
                              };
                 return result.ToList();
 

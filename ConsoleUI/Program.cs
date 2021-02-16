@@ -15,15 +15,45 @@ namespace ConsoleUI
         {
             //CarDeleteByIdTest(1);
             //AddCarTest(4,2,3,290,2021,"Sıkıntısız Araç");
-            GetAllCarTest();
+            //GetAllCarTest();
             //GetByBrandIdTest(2);
             //AddBrandTest(4, "Honda");
-            GetAllBrandTest();
+            //GetAllBrandTest();
             //AddColorTest(3, "Bej");
-            GetAllColorTest();
+            //GetAllColorTest();
             //UpdateCarTest();
             //GetCarDetailsTest();
+            //AddRentalTest();
+            //GetAllRentalTest();
+            //GetRentalDetailTest();
+            
+        }
 
+        private static void GetRentalDetailTest()
+        {
+            var result = new RentalManager(new EfRentalDal());
+            foreach (var car in result.GetRentalDetails().Data)
+            {
+                Console.WriteLine(car.Id + "     " + car.CarId + "    " + car.CarName + "     " + car.CompanyName + "    " + car.RentDate+"   " + car.ReturnDate);
+            }
+        }
+
+        private static void AddRentalTest()
+        {
+            var result = new RentalManager(new EfRentalDal());
+            var result2=result.Add(new Rental { CarId = 2, CustomerId = 4, Id = 4, RentDate = new DateTime(2021, 02, 16)});
+            Console.WriteLine(result2.Message);
+        }
+
+        private static void GetAllRentalTest()
+        {
+            var result = new RentalManager(new EfRentalDal());
+            Console.WriteLine("No       Car ID      CustomerId     RentDate                  ReturnDate");
+            foreach (var rental in result.GetAll().Data)
+            {
+                Console.WriteLine(rental.Id + "          " + rental.CarId + "         " + rental.CustomerId + "          " + rental.RentDate+ "      " + rental.ReturnDate);
+            }
+            Console.WriteLine(result.GetAll().Message);
         }
 
         private static void GetCarDetailsTest()
