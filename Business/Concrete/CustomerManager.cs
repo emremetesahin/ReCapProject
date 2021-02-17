@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entity.Concrete;
 using System;
@@ -9,11 +10,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CustomerManager : ICustomerService
+    public class CustomerManager : ICustomerService 
     {
-        EfCustomerDal _customerDal;
+        ICustomerDal _customerDal;
 
-        public CustomerManager(EfCustomerDal customerDal)
+        public CustomerManager(ICustomerDal customerDal)
         {
             _customerDal = customerDal;
         }
@@ -45,5 +46,5 @@ namespace Business.Concrete
             _customerDal.Update(customer);
             return new SuccessResult(Messages.CustomerUpdated);
         }
-    }
+    }   
 }

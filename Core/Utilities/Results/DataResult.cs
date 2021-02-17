@@ -14,6 +14,9 @@ namespace Core.Utilities.Results
         {
             Data = data;
         }
+        public DataResult(bool success,string message):base(success)
+        { 
+        }
          public T Data { get; }
     }
 }

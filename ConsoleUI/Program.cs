@@ -26,7 +26,17 @@ namespace ConsoleUI
             //AddRentalTest();
             //GetAllRentalTest();
             //GetRentalDetailTest();
-            
+            //GetAllCustomerTest();
+
+        }
+
+        private static void GetAllCustomerTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            foreach (var item in customerManager.GetAll().Data)
+            {
+                Console.WriteLine(item.UserId + " " + item.CompanyName);
+            }
         }
 
         private static void GetRentalDetailTest()

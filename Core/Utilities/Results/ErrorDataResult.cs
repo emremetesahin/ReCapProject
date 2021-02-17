@@ -14,5 +14,8 @@ namespace Core.Utilities.Results
         {
 
         }
+        public ErrorDataResult(string message):base(false,message)
+        { 
+        }
     }
 }

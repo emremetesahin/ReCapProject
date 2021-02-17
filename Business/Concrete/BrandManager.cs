@@ -23,17 +23,17 @@ namespace Business.Concrete
             if (brand.BrandName.Length >= 2)
             {
                 _brandDal.Add(brand);
-                return new SuccessResult(Messages.BrandListed);
+                return new SuccessResult(Messages.BrandAdded);
 
             }
-            return new SuccessResult(Messages.BrandListed);
+            return new SuccessResult(Messages.BrandAddedNot);
             
         }
 
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult(Messages.BrandListed);
+            return new SuccessResult(Messages.BrandDeleted);
 
         }
 
@@ -46,7 +46,7 @@ namespace Business.Concrete
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            return new SuccessResult(Messages.BrandListed);
+            return new SuccessResult(Messages.BrandUpdated);
 
         }
     }
