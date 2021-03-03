@@ -60,5 +60,15 @@ namespace Business.Constants
         public static string UserUpdated = "Kullanıcı Güncellendi";
         public static string UserUpdatedNot = "Kullanıcı Güncellenemedi";
 
+
+        public static string Added="Eklendi!";
+        public static string Deleted="Silindi!";
+        public static string Updated="Güncellendi!";
+        public static string Listed="Listelendi!";
+
+        public static string AddedNot = "Eklenemedi!";
+        public static string DeletedNot = "Silinemedi!";
+        public static string UpdatedNot = "Güncellenemedi!";
+        public static string ListedNot = "Listelenemedi!";
     }
 }
