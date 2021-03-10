@@ -16,14 +16,15 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (var context=new RentCarContext())
             {
-                var result = from userOperationClaim in context.UserOperationClaims
-                             join operationClaim in context.OperationClaims
-                             on userOperationClaim.OperationClaimId equals operationClaim.Id
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                             on operationClaim.Id equals userOperationClaim.OperationClaimId
                              where userOperationClaim.UserId == user.Id
-                             select new OperationClaim { Id = operationClaim.Id,Name=operationClaim.Name };
-                return result.ToList();
+                             select new OperationClaim{ Id = operationClaim.Id, Name = operationClaim.Name };
 
+                return result.ToList();
             }
+
 
         }
     }

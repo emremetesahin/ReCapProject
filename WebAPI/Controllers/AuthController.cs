@@ -23,10 +23,10 @@ namespace WebAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login(UserLoginDto userLoginDto)
         {
-            var userToLogin = _authService.Login(userLoginDto);
+                var userToLogin = _authService.Login(userLoginDto);
             if (!userToLogin.Success)
             {
-                BadRequest(userToLogin);
+                return BadRequest(userToLogin.Message);
             }
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)

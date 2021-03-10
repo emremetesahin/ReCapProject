@@ -36,11 +36,13 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
-            if (HashingHelper.VerifyPasswordHash(userLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
             {
-                return new SuccessDataResult<User>(userToCheck, Messages.SuccessfullLogin);
+                return new ErrorDataResult<User>(Messages.PasswordError);
             }
-            return new ErrorDataResult<User>(Messages.PasswordError);
+            return new SuccessDataResult<User>(userToCheck, Messages.SuccessfullLogin);
+
+
         }
 
 
