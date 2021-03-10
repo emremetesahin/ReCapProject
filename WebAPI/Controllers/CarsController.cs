@@ -2,6 +2,7 @@
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -57,6 +58,8 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getall")]
+        [Authorize(Roles = "Porduct.List,admin")]
+
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();

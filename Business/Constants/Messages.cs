@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -70,5 +71,12 @@ namespace Business.Constants
         public static string DeletedNot = "Silinemedi!";
         public static string UpdatedNot = "Güncellenemedi!";
         public static string ListedNot = "Listelenemedi!";
+
+        public static string UserRegistered="Üye Olundu";
+        public static string UserNotFound="Üye Bulunamadı";
+        public static string SuccessfullLogin="Başarıyla giriş yapıldı";
+        public static string PasswordError="Şifre hatası";
+        public static string AccessTokenCreated="Token üretildi";
+        public static string UserAlreadExists="Üye zaten kaydolmuş";
     }
 }

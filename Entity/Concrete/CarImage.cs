@@ -1,4 +1,4 @@
-﻿using Core.DataAccess.Entities;
+﻿using Core.Entities.Abstract;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
