@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getall")]
-        [Authorize(Roles = "Porduct.List,admin")]
+        //[Authorize(Roles = "Porduct.List,admin")]
 
         public IActionResult GetAll()
         {
@@ -114,5 +114,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+       
     }
 }

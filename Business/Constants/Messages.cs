@@ -1,6 +1,7 @@
 ﻿using Entity.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -78,5 +79,6 @@ namespace Business.Constants
         public static string PasswordError="Şifre hatası";
         public static string AccessTokenCreated="Token üretildi";
         public static string UserAlreadExists="Üye zaten kaydolmuş";
+        public static string AuthorizationDenied="Yetkilendirme hatası";
     }
 }

@@ -8,6 +8,7 @@ using Core.Utilities.Helpers.Security.Jwt;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
+
+            //builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

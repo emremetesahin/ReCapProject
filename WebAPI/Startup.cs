@@ -1,7 +1,10 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.Helpers.Security.Encryption;
 using Core.Utilities.Helpers.Security.Jwt;
+using Core.Utilities.IoC;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -55,8 +58,8 @@ namespace WebAPI
                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                 };
             });//
-            
-
+            services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
+            /*
 
             services.AddSingleton<ICarService, CarManager>();
             services.AddSingleton<ICarDal, EfCarDal>();
@@ -75,7 +78,7 @@ namespace WebAPI
 
             services.AddSingleton<ICustomerService, CustomerManager>();
             services.AddSingleton<ICustomerDal, EfCustomerDal>();
-
+            */
 
 
 

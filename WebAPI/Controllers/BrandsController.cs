@@ -63,6 +63,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("transaction")]
+        public IActionResult Transaction(Brand brand)
+        {
+            var result = _brandService.TransactionTest(brand);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
     }
 }

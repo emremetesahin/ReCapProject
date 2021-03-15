@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Utilities.Results;
@@ -24,9 +27,11 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             //ValidationTool.Validate(new CarValidator(), car);
+
             _cardal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
@@ -44,7 +49,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
 
         }
-
+        [SecuredOperation("admin,car.list")]
+        //[PerformanceAspect(0)]
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_cardal.GetAll(),Messages.CarListed);
@@ -63,7 +70,7 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetByPriceRange(double min, double max)
         {
             return new SuccessDataResult<List<Car>>(_cardal.GetAll(c => min <= c.DailyPrice&& c.DailyPrice<=max),Messages.CarListed);
-        }
+        } 
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
@@ -75,5 +82,8 @@ namespace Business.Concrete
             _cardal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+        //[TransactionScopeAspect]
+        
+
     }
 }
