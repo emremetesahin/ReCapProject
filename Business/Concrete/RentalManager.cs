@@ -52,6 +52,12 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<RentalDetailDto>>(_rentaldal.GetRentalDetail(),Messages.CarListed);
         }
+
+        public IDataResult<List<RentalerDto>> GetRentalers()
+        {
+            return new SuccessDataResult<List<RentalerDto>>(_rentaldal.GetRentalers(), Messages.RentalListed);
+        }
+
         [ValidationAspect(typeof(RentalValidator))]
 
         public IResult Update(Rental rental)

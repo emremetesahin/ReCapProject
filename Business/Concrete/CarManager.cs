@@ -49,32 +49,37 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
 
         }
-        [SecuredOperation("admin,car.list")]
+        //[SecuredOperation("admin,car.list")]
         //[PerformanceAspect(0)]
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_cardal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_cardal.GetAll(), Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetByBrandId(int brandId)
+        public IDataResult<List<CarDetailDto>> GetByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_cardal.GetAll(c=>c.BrandId==brandId),Messages.CarListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.BrandId == brandId), Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetByColorId(int colorId)
+        public IDataResult<List<CarDetailDto>> GetByCarId(int carId)
         {
-            return new SuccessDataResult<List<Car>>(_cardal.GetAll(c => c.ColorId == colorId),Messages.CarListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.Id == carId), Messages.CarListed);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.ColorId == colorId), Messages.CarListed);
         }
 
         public IDataResult<List<Car>> GetByPriceRange(double min, double max)
         {
-            return new SuccessDataResult<List<Car>>(_cardal.GetAll(c => min <= c.DailyPrice&& c.DailyPrice<=max),Messages.CarListed);
-        } 
+            return new SuccessDataResult<List<Car>>(_cardal.GetAll(c => min <= c.DailyPrice && c.DailyPrice <= max), Messages.CarListed);
+        }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(),Messages.CarListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(), Messages.CarListed);
         }
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
@@ -83,7 +88,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
         //[TransactionScopeAspect]
-        
+
 
     }
 }

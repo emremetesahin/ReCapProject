@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\CarImages\8b9240da-4171-42ab-92c6-ced3ff2b766a.jpg" />
+    <None Include="wwwroot\CarImages\d57aedf9-9c8a-4e55-848c-2ed7b39949b5.jpg" />
+    <None Include="wwwroot\CarImages\default.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.13" />
   </ItemGroup>
