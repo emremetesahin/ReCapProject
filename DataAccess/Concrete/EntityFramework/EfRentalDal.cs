@@ -18,8 +18,10 @@ namespace DataAccess.Concrete.EntityFramework
                 var result = from re in context.Rentals
                              join ca in context.Cars
                              on re.CarId equals ca.Id
+
                              join br in context.Brands
                              on ca.BrandId equals br.BrandId
+
                              join cu in context.Customers
                              on re.CustomerId equals cu.UserId
 

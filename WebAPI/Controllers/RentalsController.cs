@@ -72,7 +72,36 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result); 
         }
-        [HttpGet("getRentalers")]
+
+        [HttpGet("getbyid")]
+        public IActionResult GetRentalbyId(int id)
+        {
+            var result = _rentalService.GetRentalById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet("checkreturndate")]
+        public IActionResult CheckReturnDate(int carId)
+        {
+            var result = _rentalService.CheckCarReturnDate(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet("getrentalers")]
         public IActionResult GetRentalers()
         {
             var result = _rentalService.GetRentalers();

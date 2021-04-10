@@ -81,6 +81,22 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(), Messages.CarListed);
         }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandName(string brandName)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c=>c.BrandName==brandName), Messages.CarListed);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandNameAndColorName(string brandName, string colorName)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.BrandName == brandName&&c.ColorName==colorName), Messages.CarListed);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByColordName(string colorName)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.ColorName == colorName), Messages.CarListed);
+        }
+
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {

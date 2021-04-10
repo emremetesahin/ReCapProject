@@ -21,7 +21,8 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult Add(Brand brand)
         {
-            var result = _brandService.Add(brand);
+            var addedBrand = new Brand { BrandName = brand.BrandName };
+            var result = _brandService.Add(addedBrand);
             if (result.Success)
             {
                 return Ok(result);

@@ -13,11 +13,11 @@ namespace Business.Abstract
         IResult Delete(Rental rental);
         IResult Update(Rental rental);
         IDataResult<List<Rental>> GetAll();
-        bool CheckCarReturnDate(int CarId);
+        IResult CheckCarReturnDate(int CarId);
 
         IDataResult<List<RentalDetailDto>> GetRentalDetails();
 
         IDataResult<List<RentalerDto>> GetRentalers();
-
+        IDataResult<Rental>GetRentalById(int id);
     }
 }
