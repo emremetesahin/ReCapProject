@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             var userExists = _authService.UserExists(userRegisterDto.Email);
             if (!userExists.Success)
             {
-                return BadRequest(userExists.Message);
+                return BadRequest(userExists);
             }
             var registeredResult = _authService.Register(userRegisterDto);
             var result = _authService.CreateAccessToken(registeredResult.Data);

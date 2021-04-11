@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Transaction;
@@ -23,6 +24,7 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
         [ValidationAspect(typeof(BrandValidator))]
+        [SecuredOperation("admin")]
         public IResult Add(Brand brand)
         {
            var result=BusinessRules.Run(CheckBrandNameExists(brand.BrandName));
