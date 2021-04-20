@@ -31,9 +31,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CreditCardDeleted);
         }
 
-        public IDataResult<List<CreditCard>> GetAll()
+        public IDataResult<List<CreditCard>> GetByUserId(int userId)
         {
-          return new SuccessDataResult<List<CreditCard>>(_creditCarDal.GetAll(),Messages.CreditCardsListed);
+          return new SuccessDataResult<List<CreditCard>>(_creditCarDal.GetAll(u=>u.UserId==userId),Messages.CreditCardsListed);
         }
     }
 }

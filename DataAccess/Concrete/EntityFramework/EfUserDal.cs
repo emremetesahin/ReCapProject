@@ -7,6 +7,8 @@ using System.Linq;
 using Core.Entities.Abstract;
 using Core.Entities.Concrete;
 using Core.Entities;
+using Entity.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -27,5 +29,30 @@ namespace DataAccess.Concrete.EntityFramework
 
 
         }
+
+        public UserDetailDto GetDetailsByMail(string email)
+        {
+            using (var context=new RentCarContext())
+            {
+                var result = from us in context.Users
+                             join cu in context.Customers
+                             on us.Id equals cu.UserId
+                             where us.Email==email
+                             select new UserDetailDto
+                             {
+                                 UserId = us.Id,
+                                 CompanyName = cu.CompanyName,
+                                 CustomerId = cu.UserId,
+                                 Email = us.Email,
+                                 Name = us.FirstName + " " + us.LastName
+                             };
+                return result.FirstOrDefault();
+                
+
+            }
+
+        }
+
+       
     }
 }

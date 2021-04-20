@@ -73,20 +73,7 @@ namespace WebAPI.Controllers
             return BadRequest(result); 
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetRentalbyId(int id)
-        {
-            var result = _rentalService.GetRentalById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
-        }
-
+       
         [HttpGet("checkreturndate")]
         public IActionResult CheckReturnDate(int carId)
         {
@@ -100,11 +87,10 @@ namespace WebAPI.Controllers
                 return BadRequest(result);
             }
         }
-
-        [HttpGet("getrentalers")]
-        public IActionResult GetRentalers()
+        [HttpPost("getrentalid")]
+        public IActionResult GetRentalId(Rental rental)
         {
-            var result = _rentalService.GetRentalers();
+            var result = _rentalService.GetRentalId(rental.CarId,rental.CustomerId,rental.RentDate,rental.ReturnDate);
             if (result.Success)
             {
                 return Ok(result);
@@ -114,5 +100,8 @@ namespace WebAPI.Controllers
                 return BadRequest(result);
             }
         }
+
+
+
     }
 }

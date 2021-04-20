@@ -46,10 +46,10 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("getall")]
-        public IActionResult Getall()
+        [HttpGet("getbyuserid")]
+        public IActionResult GetByUserId(int userId)
         {
-            var result = _creditCardService.GetAll();
+            var result = _creditCardService.GetByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);

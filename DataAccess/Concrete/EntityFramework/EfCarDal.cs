@@ -26,13 +26,12 @@ namespace DataAccess.Concrete.EntityFramework
                              select new CarDetailDto
                              {
                                  Id = ca.Id,
-                                 BrandId=ca.BrandId,
                                  BrandName = br.BrandName,
-                                  ColorId=ca.ColorId,
                                  ColorName = co.ColorName,
                                  DailyPrice = ca.DailyPrice,
                                  ModelYear = ca.ModelYear,
                                  Description = ca.Description,
+                                 MinFindeksScore=ca.MinFindeksScore
                                  
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList(); 

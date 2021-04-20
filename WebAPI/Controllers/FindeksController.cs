@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,62 +11,64 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class FindeksController : ControllerBase
     {
-        IUserService _userService;
-        public UsersController(IUserService userService)
+        IFindeksService _findeksService;
+
+        public FindeksController(IFindeksService findeksService)
         {
-            _userService = userService;
-        }
-        [HttpPost("add")]
-        public IActionResult Add(User user)
-        {
-            var result = _userService.Add(user);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            _findeksService = findeksService;
         }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(User user)
+        [HttpPost("Add")]
+        public IActionResult Add(Findeks findeks)
         {
-            var result = _userService.Delete(user);
-            if (result.Success)
+            var result = _findeksService.Add(findeks);
+            if(result.Success)
             {
                 return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpPost("update")]
-        public IActionResult Update(User user)
-        {
-            var result = _userService.Update(user);
-            if (result.Success)
-            {
-                return Ok(result);
-
             }
             return BadRequest(result);
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public IActionResult GetAll(Findeks findeks)
         {
-            var result = _userService.GetAll();
+            var result = _findeksService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getdetailsbymail")]
-        public IActionResult GetDetailsByMail(string mail)
+
+        [HttpGet("getbycustomerid")]
+        public IActionResult GetByCustomerId(int customerId)
         {
-            var result = _userService.GetDetailsByMail(mail);
-            if(result.Success)
+            var result = _findeksService.GetByCustomerId(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("delete")]
+        public IActionResult Delete(Findeks findeks)
+        {
+            var result = _findeksService.Delete(findeks);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("update")]
+        public IActionResult Update(Findeks findeks)
+        {
+            var result = _findeksService.Update(findeks);
+            if (result.Success)
             {
                 return Ok(result);
             }

@@ -11,8 +11,7 @@ namespace Business.Abstract
     {
         IResult Add(CreditCard creditCard);
         IResult Delete(CreditCard creditCard);
-        IDataResult<List<CreditCard>> GetAll();
-        //IResult CheckCreditCard(PaymentDetailDto paymentDetailDto);
+        IDataResult<List<CreditCard>> GetByUserId(int userId);
 
      }
 }

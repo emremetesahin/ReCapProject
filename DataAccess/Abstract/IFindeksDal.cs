@@ -1,17 +1,12 @@
 ﻿using Core.DataAccess.EntityFramework;
 using Entity.Concrete;
-using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal:IEntityRepository<Rental>
+    public interface IFindeksDal:IEntityRepository<Findeks>
     {
-
-        List<RentalDetailDto> GetRentalDetails();
-        
-
     }
 }

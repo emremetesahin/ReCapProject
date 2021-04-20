@@ -5,12 +5,10 @@ using System.Text;
 
 namespace Entity.Concrete
 {
-    public class Rental : IEntity
+    public class Findeks:IEntity
     {
         public int Id { get; set; }
-        public int CarId { get; set; }
         public int CustomerId { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime? ReturnDate { get; set; }
+        public int Score { get; set; }
     }
 }

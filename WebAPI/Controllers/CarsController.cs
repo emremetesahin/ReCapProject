@@ -58,33 +58,17 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getall")]
-        //[Authorize(Roles = "Porduct.List,admin")]
-
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
-            return Ok(result);
-
-        }
-
-
-        [HttpGet("getbybrand")]
-        public IActionResult GetByBrandId(int brandId)
-        {
-            var result = _carService.GetByBrandId(brandId);
-            return Ok(result);
-        }
-        [HttpGet("getbycolor")]
-        public IActionResult GetByColorId(int colorId)
-        {
-            var result = _carService.GetByColorId(colorId);
-            if (result.Success)
+            if(result.Success)
             {
                 return Ok(result);
+
             }
             return BadRequest(result);
-        }
 
+        }
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetail()
         {

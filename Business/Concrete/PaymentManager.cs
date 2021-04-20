@@ -1,14 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Core.Aspects.Autofac.Transaction;
-using Core.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
-using Entity.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -24,6 +21,7 @@ namespace Business.Concrete
         public IResult Add(Payment payment)
         {
             payment.PaymentDate = DateTime.Now;
+
                 _paymentDal.Add(payment);
                 return new SuccessResult(Messages.PaymentSuccessfull);
         }

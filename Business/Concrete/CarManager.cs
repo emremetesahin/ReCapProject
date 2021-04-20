@@ -57,21 +57,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_cardal.GetAll(), Messages.CarListed);
         }
 
-        public IDataResult<List<CarDetailDto>> GetByBrandId(int brandId)
+      
+
+        public IDataResult<CarDetailDto>GetByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.BrandId == brandId), Messages.CarListed);
+            return new SuccessDataResult<CarDetailDto>(_cardal.GetCarDetail(c => c.Id == carId)[0], Messages.CarListed);
         }
 
-        public IDataResult<List<CarDetailDto>> GetByCarId(int carId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.Id == carId), Messages.CarListed);
-        }
-
-        public IDataResult<List<CarDetailDto>> GetByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetail(c => c.ColorId == colorId), Messages.CarListed);
-        }
-
+       
         public IDataResult<List<Car>> GetByPriceRange(double min, double max)
         {
             return new SuccessDataResult<List<Car>>(_cardal.GetAll(c => min <= c.DailyPrice && c.DailyPrice <= max), Messages.CarListed);

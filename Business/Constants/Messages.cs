@@ -89,5 +89,11 @@ namespace Business.Constants
         public static string CreditCardInvalid="Kredi kartı geçerli değil";
         public static string PaymentsListed="Ödemeler Listelendi";
         public static string PaymentError="Ödeme gerçekleştirilemedi!";
+        public static string FindeksScoreNotEnough="Findeks Puanınız Yetersiz";
+        public static string FindeksAdded="Findeks Puanı Eklendi";
+        public static string FindeksDeleted="Findeks Puanı Silindi";
+        public static string FindeksUpdated="Findeks Puanı Güncellendi";
+        public static string UserDetailListedError="Üye bilgileri listelenirken hata";
+        public static string UserDetailsListed="Üye bilgileri listelendi";
     }
 }

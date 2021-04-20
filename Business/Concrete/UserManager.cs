@@ -6,8 +6,10 @@ using Core.Entities;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -38,14 +40,22 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userdal.GetAll(),Messages.UserListed);
         }
 
+        public User GetByMail(string email)
+        {
+            return _userdal.Get(u => u.Email == email);
+        }
+
         public List<OperationClaim> GetClaims(User user)
         {
             return _userdal.GetClaims(user);
         }
 
-        public User GetByMail(string email)
+        public IDataResult<UserDetailDto> GetDetailsByMail(string email)
         {
-            return(_userdal.Get(u => u.Email == email));
+            var result=_userdal.GetDetailsByMail(email);
+            if(email.Length>0)
+            { return new SuccessDataResult<UserDetailDto>(result,Messages.UserDetailsListed); }
+            else { return new ErrorDataResult<UserDetailDto>(result,Messages.UserDetailListedError); }
         }
 
         [ValidationAspect(typeof(UserValidator))]
@@ -54,5 +64,7 @@ namespace Business.Concrete
             _userdal.Update(user);
             return new SuccessResult(Messages.UserUpdated);
         }
+
+
     }
 }
