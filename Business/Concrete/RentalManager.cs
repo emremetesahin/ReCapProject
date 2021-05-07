@@ -50,9 +50,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentaldal.GetAll(),Messages.RentalListed);
         }
 
-    
-
-
+   
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentaldal.GetRentalDetails(), Messages.RentalListed);
@@ -98,6 +96,12 @@ namespace Business.Concrete
         {
             var result=_rentaldal.Get(r => r.CarId == carId & r.CustomerId == customerId & r.RentDate == rentDate & r.ReturnDate == returnDate);
             return new SuccessDataResult<Rental>(result);
+        }
+
+        public IDataResult<Rental> GetRentalById(int rentalId)
+        {
+            var result = _rentaldal.Get(r => r.Id == rentalId);
+            return new SuccessDataResult<Rental>(result,Messages.RentalListed);
         }
     }
 }
